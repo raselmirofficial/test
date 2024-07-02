@@ -1,0 +1,29 @@
+id: cool-day
+
+info:
+  name: Cool day
+  author: pikpikcu
+  severity: info
+  description: An cool thing.
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/affiliates/Account/Login"
+      - "{{BaseURL}}/affiliates/Account/ForgotPassword"
+      - "{{BaseURL}}/affiliates/Account/Login#"
+      - "{{BaseURL}}/affiliates/Account/Login?ReturnUrl=%2Faffiliates%2F#"
+      - "{{BaseURL}}/affiliates/Account/Login#"
+#      - "affiliate{{BaseURL}}/affiliates/Account/Login#"
+#      - "affiliates{{BaseURL}}/affiliates/Account/Login#"
+#      - "afiliados{{BaseURL}}/affiliates/Account/Login#"
+    matchers-condition: or
+    matchers:
+      - type: word
+        part: body
+        words:
+          - '<title>Login</title>'
+
+      - type: status
+        status:
+          - 200
